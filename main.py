@@ -5,6 +5,7 @@ import sys
 import utils
 
 import PySimpleGUI as sg
+from PySimpleGUI.PySimpleGUI import _tray_icon_error
 
 sg.theme('SystemDefaultForReal')
 ttk_style = 'winnative'
@@ -26,11 +27,10 @@ def main():
                 if err is None:
                     sg.SystemTray.notify("conversion ok", r)
                 else:
-                    sg.SystemTray.notify("conversion failed", err)
+                    sg.SystemTray.notify("conversion failed", err, icon=_tray_icon_error)
             except Exception as e:
-                    sg.SystemTray.notify("conversion failed", str(e))
-
-
+                    sg.SystemTray.notify("conversion failed", str(e), icon=_tray_icon_error)
     window.close()
+
 if __name__ == "__main__":
     main()
